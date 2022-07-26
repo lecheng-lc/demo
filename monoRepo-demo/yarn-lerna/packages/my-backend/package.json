@@ -1,0 +1,20 @@
+{
+  "name": "my-backend",
+  "version": "0.0.3",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo tests running in my-web-app"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "vue": "^3.2.31",
+    "vue-class-component": "^7.2.6"
+  }
+}
