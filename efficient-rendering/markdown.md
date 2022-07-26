@@ -1,0 +1,2 @@
+- 使用selenuim 解决大资源渲染问题
+- 使用webworker 解决TTI时间过长问题
