@@ -24,8 +24,12 @@
   "dependencies": {
     "co-mocha": "^1.2.2",
     "egg": "^2.6.1",
+    "egg-cors": "^2.2.3",
     "egg-scripts": "^2.6.0",
-    "mocha": "^10.0.0"
+    "egg-sequelize": "^6.0.0",
+    "mocha": "^10.0.0",
+    "mysql2": "^1.6.5",
+    "silly-datetime": "^0.1.2"
   },
   "devDependencies": {
     "@eggjs/tsconfig": "^1.0.0",
