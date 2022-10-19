@@ -1,24 +1,27 @@
 <script lang="ts" setup>
-import { reactive, toRef } from 'vue'
+import { ref} from 'vue'
 import { useRouter } from 'vue-router'
 import { adminUserStore } from '../../store/module/adminUser'
 import { apiRole, deleApiRole } from '../../api/request'
 const adminUser = adminUserStore().adminUser
 const router = useRouter()
-let data = reactive<any>({})
+let data = ref<any>({})
 const handleOpen1 = () => {
   console.log('我是提示信息1')
 }
 const getData = () => {
   apiRole().then(res => {
     if (res.data.ok) {
-      data = res.data.data
+      data.value = res.data.data
+      console.log(data)
+      
     }
   })
     .catch(err => {
       console.log(err)
     })
 }
+getData()
 const updateItem = (id: string) => {
   router.push({
     path: '/role/update',
@@ -66,7 +69,7 @@ const openAuth = (id: string) => {
           <td>{{item.description}}</td>
           <td>{{item.createdAt}}</td>
           <td>{{item.updatedAt}}</td>
-          <td v-if="adminUser.username=== 'admin'">
+          <td v-if="adminUser.username=== 'admin'" class="button-wrapper">
             <button @click="openAuth(item.id)" class="info">授权</button>
             <button @click="updateItem(item.id)" class="warning">编辑</button>
             <button @click="delItem(item.id)" class="dialog">删除</button>
@@ -80,6 +83,10 @@ const openAuth = (id: string) => {
 
 
 
-<style>
-
+<style lang="scss" scoped>
+  .button-wrapper{
+    button{
+      margin-right:10px;
+    }
+  }
 </style>

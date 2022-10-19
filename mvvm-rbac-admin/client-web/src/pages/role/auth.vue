@@ -1,14 +1,16 @@
 
 <script setup lang="ts">
-import { ref ,reactive} from 'vue'
-import {rolePermision,roleAuth,apiAuth} from '../../api/request'
-import {useRoute, useRouter} from 'vue-router'
+import {adminUserStore} from '../../store/module/adminUser'
+import { ref } from 'vue'
+import { rolePermision, roleAuth, apiAuth } from '../../api/request'
+import { useRoute, useRouter } from 'vue-router'
+const adminUserInstance = adminUserStore()
 const route = useRoute()
 const router = useRouter()
 let data = ref<any>('')
-let checkData = reactive<any>({})
-let roleId = ref<any>('')
-roleId.value = route.query.id
+let checkData = ref<any>({})
+let roleId = ref<any>(adminUserInstance.adminUser.id)
+
 const byStatusAddCheck = (arr: any) => {
   arr.map((item: any) => {
     if (item.status === 1) {
@@ -37,61 +39,60 @@ const byStatusAddCheck = (arr: any) => {
   })
   return arr
 }
-const getData = (checkData: any) =>{
+const getData = (checkData: any) => {
   rolePermision().then(res => {
-      console.log(res.data)
-      data = res.data.data
-      // this.data = this.byStatusAddCheck(res.data.data)
-      checkData.forEach((someItem:any) => {
-        data.forEach((allItem1:any) => {
-          if (someItem.id === allItem1.id) {
-            allItem1.check = true
+    console.log(res.data)
+    data.value = res.data.data
+    checkData.forEach((someItem: any) => {
+      data.value.forEach((allItem1: any) => {
+        if (someItem.id === allItem1.id) {
+          allItem1.check = true
+        }
+        allItem1.children.forEach((allItem2: any) => {
+          if (someItem.id === allItem2.id) {
+            allItem2.check = true
           }
-          allItem1.children.forEach((allItem2:any) => {
-            if (someItem.id === allItem2.id) {
-              allItem2.check = true
+          allItem2.children.forEach((allItem3: any) => {
+            if (someItem.id === allItem3.id) {
+              allItem3.check = true
             }
-            allItem2.children.forEach((allItem3:any) => {
-              if (someItem.id === allItem3.id) {
-                allItem3.check = true
-              }
-            })
           })
         })
       })
     })
+  })
     .catch(err => {
       console.log(err)
     })
 }
 const getCheckData = () => {
   roleAuth({
-        roleId:roleId.value
-      }).then((res:any) => {
-      console.log(res.data)
-      let newArr:any[] = []
-      var i = 0
-      function toArr(data:any) {
-        data.forEach((item:any, index:number) => {
-          newArr[i] = {
-            id: item.id
-          }
-          i++
-          if (item.children) {
-            toArr(item.children)
-          }
-        })
-        return newArr
-      }
-      checkData = toArr(res.data.data)
-      getData(checkData)
-    })
+    roleId: roleId.value
+  }).then((res: any) => {
+    console.log(res.data)
+    let newArr: any[] = []
+    var i = 0
+    function toArr(data: any) {
+      data.forEach((item: any, index: number) => {
+        newArr[i] = {
+          id: item.id
+        }
+        i++
+        if (item.children) {
+          toArr(item.children)
+        }
+      })
+      return newArr
+    }
+    checkData.value = toArr(res.data.data)
+    getData(checkData.value)
+  })
     .catch(err => {
       console.log(err)
     })
 }
 const postData = () => {
-  let arr:any[] = []
+  let arr: any[] = []
   var i = 0
   function toArr(data: any[]) {
     data.forEach((item: { id: any; name: any; check: any; children: any; }, index: any) => {
@@ -112,9 +113,9 @@ const postData = () => {
     delete item.check
   })
   apiAuth({
-      roleId: roleId.value,
-      data: result
-    }) 
+    roleId: roleId.value,
+    data: result
+  })
     .then((res: any) => {
       console.log(res)
       router.push({

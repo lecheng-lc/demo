@@ -18,32 +18,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { apiRole, putApiRole } from "../../api/request";
-const route = useRoute();
-const router = useRouter();
-let title = ref("");
-let id = ref<any>("");
-let description = ref("");
-id = route.query.id;
+import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import {adminUserStore} from '../../store/module/adminUser'
+import { apiRole, putApiRole } from '../../api/request'
+const router = useRouter()
+const adminUserInstance = adminUserStore()
+let title = ref('')
+let id = ref<any>(adminUserInstance.adminUser.id)
+let description = ref('')
 const getRoleData = () => {
-  apiRole({ id })
+  apiRole({ id:id.value })
     .then((res) => {
-      console.log(res.data);
-      title.value = res.data.data[0].title;
-      description.value = res.data.data[0].description;
+      title.value = res.data.data[0].title
+      description.value = res.data.data[0].description
     })
     .catch((err) => {
-      console.log(err);
-    });
+      console.log(err)
+    })
 };
-getRoleData();
+getRoleData()
 const onSubmit = () => {
   putApiRole({
-    id: id,
-    title: title,
-    description: description,
+    id:id.value,
+    title: title.value,
+    description: description.value
   })
     .then((res) => {
       console.log(res.data);

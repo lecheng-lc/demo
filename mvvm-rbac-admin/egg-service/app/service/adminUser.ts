@@ -10,8 +10,8 @@ class AdminUserService extends Service {
       // page第几页
       // limit 第页多少条
       // offset 跳过多少页面
-      const limit = ctx.helper.parseInt(query.limit) || 2;
-      const offset = ctx.helper.parseInt(query.page - 1) * limit;
+      const limit = parseInt(query.limit) || 2;
+      const offset = parseInt(String(query.page - 1)) * limit;
       const result = await ctx.model.AdminUser.findAndCountAll({
         offset,
         limit,

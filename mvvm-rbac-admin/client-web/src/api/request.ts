@@ -9,7 +9,7 @@ export function Login(data:any){
 export function LoginOut(data?:any){
   return http({
     method:'post',
-    url:'/api/loginout',
+    url:'/api/logout',
     data
   })
 }
@@ -31,9 +31,8 @@ export function rolePermision(data?:any,method?: string){
   console.log(data)
   return http({
     method: method||'get',
-    url: '/api/rolePermission',
-    data,
-    params:data
+    url: '/api/permission',
+    data
   })
 }
 export function apiAuth(data?:any){
@@ -50,6 +49,7 @@ export function apiRole(data?:any){
   })
 }
 export function putApiRole(data?:any){
+  console.log(data,']]]][[[[')
   return http({
     method:'put',
     url: '/api/role',
@@ -89,7 +89,8 @@ export function roleAuth(data?:any) {
   return http({
     method:'get',
     url: '/api/roleAuth',
-    data
+    data,
+    params:data
   })
 }
 export function permissionRoutes(data?:any){

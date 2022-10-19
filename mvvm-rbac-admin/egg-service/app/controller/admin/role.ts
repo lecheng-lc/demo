@@ -10,7 +10,7 @@ class RoleController extends Controller {
   }
   async findOne() {
     const { ctx } = this;
-    const id = ctx.helper.parseInt(ctx.params.id);
+    const id = parseInt(ctx.params.id);
     const result = await ctx.service.role.findOne(id);
     ctx.body = result;
   }
@@ -28,7 +28,7 @@ class RoleController extends Controller {
   }
   async destroy() {
     const { ctx } = this;
-    const id = ctx.helper.parseInt(ctx.params.id);
+    const id = parseInt(ctx.params.id);
     const result = await ctx.service.role.destroy(id);
     ctx.body = result;
   }
@@ -41,8 +41,8 @@ class RoleController extends Controller {
   }
   async roleAuth() {
     const { ctx } = this;
-    const roleId = ctx.helper.parseInt(ctx.query.roleId);
-    console.log('roleIdroleId');
+    const roleId = parseInt(ctx.query.roleId);
+    console.log('roleIdroleId')
     console.log(roleId);
     const result = await ctx.service.role.roleAuth(roleId);
     ctx.body = result;

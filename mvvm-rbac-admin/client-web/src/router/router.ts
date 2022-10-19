@@ -1,3 +1,5 @@
+import { defineAsyncComponent } from 'vue'
+const _import = (path:string) => defineAsyncComponent(() => import(`../pages/${path}.vue`));
 // 默认路由
 export const routes = [
   // addRoutes之后还有
@@ -7,7 +9,7 @@ export const routes = [
     meta: {
       title: '登录'
     },
-    component: () => import('../pages/Login.vue')
+    component: _import('Login')
   },
   {
     path: '/register',
@@ -15,7 +17,7 @@ export const routes = [
     meta: {
       title: '注册'
     },
-    component: () => import('../pages/register.vue')
+    component: _import('Register')
   }
 ]
 
@@ -28,7 +30,7 @@ export const newAddRoutes = [
       title: '首页',
       type: 2
     },
-    component: () => import('../pages/Home.vue'),
+    component: _import('Home'),
     children: [
       {
         path: '/role',
@@ -47,7 +49,7 @@ export const newAddRoutes = [
             }
           ]
         },
-        component: () => import('../pages/role/index.vue'),
+        component: defineAsyncComponent(() => import(`../pages/role/index.vue`)),
         redirect: '/role/list',
         children: [
           {
@@ -71,7 +73,8 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/role/create.vue')
+            // component: _import('/role/create')
+            component: defineAsyncComponent(() => import(`../pages/role/create.vue`)),
           },
           {
             path: '/role/list',
@@ -94,7 +97,8 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/role/list.vue')
+            // component: _import('role/list')
+            component: defineAsyncComponent(() => import(`../pages/role/list.vue`)),
           },
           {
             path: '/role/update',
@@ -117,7 +121,8 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/role/update.vue')
+            // component: _import('role/update')
+            component: defineAsyncComponent(() => import(`../pages/role/update.vue`)),
           },
           {
             path: '/role/delete',
@@ -148,7 +153,8 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/role/auth.vue')
+            // component: _import('role/auth')
+            component: defineAsyncComponent(() => import(`../pages/role/auth.vue`)),
           }
         ]
       },
@@ -159,7 +165,7 @@ export const newAddRoutes = [
           title: '管理员',
           type: 2
         },
-        component: () => import('../pages/adminUser/index.vue'),
+        component: _import('adminUser/index'),
         redirect: '/adminUser/list',
         children: [
           {
@@ -183,7 +189,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/adminUser/create.vue')
+            component: _import('adminUser/create'),
           },
           {
             path: '/adminUser/list',
@@ -206,7 +212,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/adminUser/list.vue')
+            component: _import('adminUser/list'),
           },
           {
             path: '/adminUser/update',
@@ -229,7 +235,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/adminUser/update.vue')
+            component: _import('adminUser/update'),
           },
           {
             path: '/adminUser/delete',
@@ -248,7 +254,7 @@ export const newAddRoutes = [
           title: '路由权限',
           type: 2
         },
-        component: () => import('../pages/permission/index.vue'),
+        component: _import('permission/index'),
         redirect: '/permission/list',
         children: [
           {
@@ -272,7 +278,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/permission/create.vue')
+            component: _import('permission/create'),
           },
           {
             path: '/permission/list',
@@ -295,7 +301,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/permission/list.vue')
+            component: _import('permission/list')
           },
           {
             path: '/permission/update',
@@ -318,7 +324,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: () => import('../pages/permission/update.vue')
+            component: _import('permission/update')
           },
           {
             path: '/permission/delete',

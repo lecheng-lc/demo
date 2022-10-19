@@ -13,7 +13,7 @@ class AdminUserController extends Controller {
   // 查找单个管理员
   async findOne() {
     const { ctx } = this;
-    const id = ctx.helper.parseInt(ctx.params.id);
+    const id = parseInt(ctx.params.id);
     const result = await ctx.service.adminUser.findOne(id);
     ctx.body = result;
   }
@@ -70,7 +70,7 @@ class AdminUserController extends Controller {
   // 删除管理员
   async destroy() {
     const { ctx } = this;
-    const id = ctx.helper.parseInt(ctx.params.id);
+    const id = parseInt(ctx.params.id);
     const result = await ctx.service.adminUser.destroy(id);
     ctx.body = result;
   }

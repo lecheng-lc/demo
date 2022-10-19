@@ -24,7 +24,7 @@ const logoutAction = () => {
 </script>
 <template>
   <div class="admin-layout">
-  
+  sda 
     <nav class="layout-nav">
       <ul>
         <li v-for="item in router" :key="item.id">
@@ -51,8 +51,9 @@ const logoutAction = () => {
     <header class="layout-header">
       <ul class="header-left">
         <li v-for="(item,index) in <any>$route.meta.breadCrumb" :key="item.id">
-          <router-link :to="item.path">{{item.title}} <span
-              v-if="index !==  ($route.meta as any).breadCrumb.length-1">/</span>
+          <router-link :to="item.path">
+            {{item.title}}
+             <span v-if="index !==  ($route.meta as any).breadCrumb.length-1">/</span>
           </router-link>
         </li>
       </ul>
@@ -63,6 +64,7 @@ const logoutAction = () => {
       </div>
     </header>
     <main class="layout-main">
+      <router-view/>
     </main>
 
   </div>
@@ -154,7 +156,9 @@ const logoutAction = () => {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-
+      span{
+        margin:0 10px;
+      }
       img {
         height: 40px;
         width: auto;
