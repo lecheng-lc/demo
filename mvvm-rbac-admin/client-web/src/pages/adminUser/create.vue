@@ -3,7 +3,7 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { apiRole, apiAdminUser } from '../../api/request'
 const router = useRouter()
-let roleData = reactive<any>({})
+let roleData = ref<any>({})
 let roleId = ref<string>('')
 let username = ref<string>('')
 let password = ref<string>('')
@@ -23,7 +23,7 @@ const getRoleData = () => {
   apiRole()
     .then(res => {
       console.log(res.data)
-      roleData = res.data.data
+      roleData.value = res.data.data
       roleId.value = roleData[0].id
     })
     .catch(err => {

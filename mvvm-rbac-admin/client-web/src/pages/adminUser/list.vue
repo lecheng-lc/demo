@@ -24,7 +24,7 @@
           <td>{{item.phone}}</td>
           <td>{{item.createdAt}}</td>
           <td>{{item.updatedAt}}</td>
-          <td>
+          <td class="button-wrapper">
             <button v-if="hasPermission('adminUserUpdate')" @click="updateItem(item.id)" class="warning">编辑</button>
             <button v-if="hasPermission('adminUserDelete')" @click="delItem(item.id)" class="dialog">删除</button>
           </td>
@@ -49,9 +49,9 @@ import { apiAdminUser, deleteApiAdminUser } from '../../api/request'
 import PageHeaderVue from '../../components/PageHeader.vue';
 const routerStoreInstance = routerStore()
 const router = useRouter()
-let data = reactive<any>({})
-let limit = ref<any>('')
-let page = ref<any>('')
+let data = ref<any>({})
+let limit = ref<any>(3)
+let page = ref<any>(1)
 let pages = ref<any>(0)
 let count = ref<any>(0)
 let permissionArr = reactive<any[]>([])
@@ -71,7 +71,7 @@ const permissionArrFn = () => {
     })
     return newArr
   }
-  permissionArr = toArr(routerStoreInstance)
+  permissionArr = toArr(routerStoreInstance.router)
 }
 permissionArrFn()
 const getData = () => {
@@ -79,15 +79,15 @@ const getData = () => {
   if (limit.value) {
     params.limit = limit.value
   }
-  if (page) {
+  if (page.value) {
     params.page = page.value
   }
-  apiAdminUser({ params })
+  apiAdminUser({ ...params })
     .then(res => {
       console.log(res.data)
-      data = res.data.data.rows
+      data.value = res.data.data.rows
       count.value = res.data.data.count
-      pages.value = Math.ceil(count / limit)
+      pages.value = Math.ceil(count.value / limit.value)
     })
     .catch(err => {
       console.log(err)
@@ -129,6 +129,10 @@ const nextPage = () => {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.button-wrapper{
+  button{
+    margin-right:10px;
+  }
+}
 </style>

@@ -58,7 +58,7 @@ const getData = () => {
   apiPermission()
     .then(res => {
       console.log(res.data)
-      data = res.data.data[0].children
+      data.value = res.data.data[0].children
     })
     .catch(err => {
       console.log(err)

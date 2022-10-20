@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-const prev = () => {
-  const router = useRouter()
+const router = useRouter()
+const prev = function () {
   router.go(-2)
 }
 </script>

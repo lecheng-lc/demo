@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { apiRole, apiAdminUser } from '../../api/request'
+import { apiRole, apiAdminUserOne,apiAdminUser } from '../../api/request'
 const router = useRouter()
 const route = useRoute()
 let id = ref<any>('')
@@ -11,14 +11,14 @@ let avatar = ref('')
 let phone = ref('')
 let avatarShow = ref('')
 let data = reactive<any>({})
-let roleData = reactive<any>('')
+let roleData = ref<any>('')
 let roleId = ref('')
 id.value = route.query.id
 const getRoleData = () => {
   apiRole()
     .then(res => {
       console.log(res.data)
-      roleData = res.data.data
+      roleData.value = res.data.data
     })
     .catch(err => {
       console.log(err)
@@ -26,7 +26,7 @@ const getRoleData = () => {
 }
 getRoleData()
 const getData = () => {
-  apiAdminUser()
+  apiAdminUserOne({id:id.value})
     .then((res: any) => {
       data = res.data
       username.value = res.data.data.username
@@ -101,10 +101,10 @@ const onSubmit = () => {
         <span>用户头像</span>
         <input v-if="!avatarShow" type="file" @change="uploadImg($event)">
       </label>
-      <div v-else>
+      <div v-else class="show-avartar">
         <img v-if="avatar && avatarShow" :src="avatarShow" alt="">
         <img v-else :src="'http://localhost:7001'+avatar" alt="">
-        <span @click="delNowImg">xxxxx</span>
+        <span class="delete-avatar" @click="delNowImg">删除头像</span>
       </div>
       <label>
         <span></span>
@@ -114,4 +114,16 @@ const onSubmit = () => {
   </div>
 </template>
 
+<style lang="scss" scoped>
+  .show-avartar{
+    img{
+      width:100px;
+      height:100px;
+      object-fit: cover;
+    }
+  }
+  .delete-avatar{
+    margin-left: 10px;
+  }
+</style>
 

@@ -26,6 +26,7 @@ export default defineStore('router',{
     addRouter () {
       const adminStore = adminUserStore()
       let userId =  adminStore.adminUser.id
+      console.log(userId,'------')
       return new Promise((resolve, reject) => {
         rolePermision( {
           userId
@@ -33,6 +34,7 @@ export default defineStore('router',{
           .then(res => {
             let rules = res.data.data
             let newRouter = doFilter(newAddRoutes, rules)
+            console.log(newRouter,'哈哈',rules)
             this.SET_ROUTER(newRouter)
             resolve(newRouter)
           })

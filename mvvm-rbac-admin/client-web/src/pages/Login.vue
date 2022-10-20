@@ -16,13 +16,12 @@
 </template>
 <script lang="ts" setup>
 import { adminUserStore } from '../store/module/adminUser'
-import { ref,reactive } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const adminUserInstance = adminUserStore()
 const router = useRouter()
 let username = ref('admin')
 let password = ref('123456')
-let passwords = reactive({a:2})
 const loginAction = () => {
   adminUserInstance.login({
     username: username.value,

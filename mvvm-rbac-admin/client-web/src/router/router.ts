@@ -1,5 +1,6 @@
 import { defineAsyncComponent } from 'vue'
-const _import = (path:string) => defineAsyncComponent(() => import(`../pages/${path}.vue`));
+const _import = (path:string) => defineAsyncComponent(() => import(`../pages/${path}.vue`))
+import home from '../pages/Home.vue'
 // 默认路由
 export const routes = [
   // addRoutes之后还有
@@ -30,7 +31,7 @@ export const newAddRoutes = [
       title: '首页',
       type: 2
     },
-    component: _import('Home'),
+    component: home,
     children: [
       {
         path: '/role',
@@ -73,7 +74,6 @@ export const newAddRoutes = [
                 }
               ]
             },
-            // component: _import('/role/create')
             component: defineAsyncComponent(() => import(`../pages/role/create.vue`)),
           },
           {
@@ -97,7 +97,6 @@ export const newAddRoutes = [
                 }
               ]
             },
-            // component: _import('role/list')
             component: defineAsyncComponent(() => import(`../pages/role/list.vue`)),
           },
           {
@@ -121,7 +120,6 @@ export const newAddRoutes = [
                 }
               ]
             },
-            // component: _import('role/update')
             component: defineAsyncComponent(() => import(`../pages/role/update.vue`)),
           },
           {
@@ -153,7 +151,6 @@ export const newAddRoutes = [
                 }
               ]
             },
-            // component: _import('role/auth')
             component: defineAsyncComponent(() => import(`../pages/role/auth.vue`)),
           }
         ]
@@ -165,7 +162,7 @@ export const newAddRoutes = [
           title: '管理员',
           type: 2
         },
-        component: _import('adminUser/index'),
+        component: defineAsyncComponent(() => import(`../pages/adminUser/index.vue`)),
         redirect: '/adminUser/list',
         children: [
           {
@@ -189,7 +186,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: _import('adminUser/create'),
+            component: defineAsyncComponent(() => import(`../pages/adminUser/create.vue`)),
           },
           {
             path: '/adminUser/list',
@@ -212,7 +209,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: _import('adminUser/list'),
+            component: defineAsyncComponent(() => import(`../pages/adminUser/list.vue`)),
           },
           {
             path: '/adminUser/update',
@@ -235,7 +232,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: _import('adminUser/update'),
+            component: defineAsyncComponent(() => import(`../pages/adminUser/update.vue`)),
           },
           {
             path: '/adminUser/delete',
@@ -254,7 +251,7 @@ export const newAddRoutes = [
           title: '路由权限',
           type: 2
         },
-        component: _import('permission/index'),
+        component: defineAsyncComponent(() => import(`../pages/permission/index.vue`)),
         redirect: '/permission/list',
         children: [
           {
@@ -278,7 +275,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: _import('permission/create'),
+          component: defineAsyncComponent(() => import(`../pages/permission/create.vue`)),
           },
           {
             path: '/permission/list',
@@ -301,7 +298,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: _import('permission/list')
+            component: defineAsyncComponent(() => import(`../pages/permission/list.vue`)),
           },
           {
             path: '/permission/update',
@@ -324,7 +321,7 @@ export const newAddRoutes = [
                 }
               ]
             },
-            component: _import('permission/update')
+            component: defineAsyncComponent(() => import(`../pages/permission/update.vue`)),
           },
           {
             path: '/permission/delete',

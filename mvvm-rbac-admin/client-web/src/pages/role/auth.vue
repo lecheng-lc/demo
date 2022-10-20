@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import {adminUserStore} from '../../store/module/adminUser'
 import { ref } from 'vue'
-import { rolePermision, roleAuth, apiAuth } from '../../api/request'
+import { rolePermision, apiPermission, roleAuth, apiAuth } from '../../api/request'
 import { useRoute, useRouter } from 'vue-router'
 const adminUserInstance = adminUserStore()
 const route = useRoute()
@@ -40,7 +40,7 @@ const byStatusAddCheck = (arr: any) => {
   return arr
 }
 const getData = (checkData: any) => {
-  rolePermision().then(res => {
+  apiPermission().then(res => {
     console.log(res.data)
     data.value = res.data.data
     checkData.forEach((someItem: any) => {
@@ -92,6 +92,7 @@ const getCheckData = () => {
     })
 }
 const postData = () => {
+  console.log(1234)
   let arr: any[] = []
   var i = 0
   function toArr(data: any[]) {
@@ -108,14 +109,14 @@ const postData = () => {
     })
     return arr
   }
-  let result = toArr(data).filter(item => item.check)
+  let result = toArr(data.value).filter(item => item.check)
   result.forEach(item => {
     delete item.check
   })
   apiAuth({
     roleId: roleId.value,
     data: result
-  })
+  },'post')
     .then((res: any) => {
       console.log(res)
       router.push({

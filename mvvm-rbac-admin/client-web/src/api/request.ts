@@ -28,17 +28,18 @@ export function apiPermission(data?:any,method?:string){
   })
 }
 export function rolePermision(data?:any,method?: string){
-  console.log(data)
   return http({
     method: method||'get',
-    url: '/api/permission',
-    data
+    url: '/api/rolePermission',
+    data,
+    params:data
   })
 }
-export function apiAuth(data?:any){
+export function apiAuth(data?:any,method?:string){
   return http({
-    method:'get',
+    method:method || 'get',
     url: '/api/auth',
+    data
   })
 }
 export function apiRole(data?:any){
@@ -60,7 +61,17 @@ export function deleteApiAdminUser(data?:any,method?:string){
   return http({
     method:method || 'get',
     url: `/api/adminUser/${data.id}`,
-    data
+    data,
+    params:data
+  })
+}
+export function apiAdminUserOne(data?:any,method?:string,headers?:any) {
+  return http({
+    method:method || 'get',
+    url: `/api/adminUser/${data.id}`,
+    data,
+    headers,
+    params:data
   })
 }
 export function apiAdminUser(data?:any,method?:string,headers?:any){
@@ -68,7 +79,8 @@ export function apiAdminUser(data?:any,method?:string,headers?:any){
     method:method || 'get',
     url: '/api/adminUser',
     data,
-    headers
+    headers,
+    params:data
   })
 }
 export function deleApiRole(data?:any){
