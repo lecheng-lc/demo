@@ -22,7 +22,6 @@ const delNowImg = () => {
 const getRoleData = () => {
   apiRole()
     .then(res => {
-      console.log(res.data)
       roleData.value = res.data.data
       roleId.value = roleData[0].id
     })
@@ -41,13 +40,9 @@ const onSubmit = () => {
   })
   formData.append('avatar', avatar.value)
   formData.append('data', data)
-
-  let config = {
-    headers: {
+  apiAdminUser(formData, 'POST', {
       'Content-Type': 'multipart/form-data'
-    }
-  }
-  apiAdminUser(formData, 'POST', config)
+    })
     .then((res: { data: any; }) => {
       console.log(res.data)
       router.push({

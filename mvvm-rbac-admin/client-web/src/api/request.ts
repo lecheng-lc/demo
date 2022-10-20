@@ -80,7 +80,7 @@ export function apiAdminUser(data?:any,method?:string,headers?:any){
     url: '/api/adminUser',
     data,
     headers,
-    params:data
+    params: data
   })
 }
 export function deleApiRole(data?:any){

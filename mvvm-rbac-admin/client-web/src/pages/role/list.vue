@@ -69,7 +69,7 @@ const openAuth = (id: string) => {
           <td>{{item.description}}</td>
           <td>{{item.createdAt}}</td>
           <td>{{item.updatedAt}}</td>
-          <td v-if="adminUser.username=== 'admin'" class="button-wrapper">
+          <td v-if="adminUser.username === 'admin'" class="button-wrapper">
             <button @click="openAuth(item.id)" class="info">授权</button>
             <button @click="updateItem(item.id)" class="warning">编辑</button>
             <button @click="delItem(item.id)" class="dialog">删除</button>

@@ -9,8 +9,8 @@ const route = useRoute()
 const router = useRouter()
 let data = ref<any>('')
 let checkData = ref<any>({})
-let roleId = ref<any>(adminUserInstance.adminUser.id)
-
+let roleId = ref<any>('')
+roleId.value = route.query.id || adminUserInstance.adminUser.id
 const byStatusAddCheck = (arr: any) => {
   arr.map((item: any) => {
     if (item.status === 1) {

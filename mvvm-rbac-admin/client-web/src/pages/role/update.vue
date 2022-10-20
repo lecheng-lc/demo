@@ -2,11 +2,11 @@
   <div class="app-phone-create">
     <div class="app-form">
       <label>
-        <span>手机名字</span>
+        <span>角色名字</span>
         <input type="text" v-model="title" />
       </label>
       <label>
-        <span>手机描述</span>
+        <span>角色描述</span>
         <input type="text" v-model="description" />
       </label>
       <label>
