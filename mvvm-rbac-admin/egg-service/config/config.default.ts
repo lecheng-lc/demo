@@ -15,7 +15,10 @@ export default (appInfo: EggAppInfo) => {
     // myAppName: 'egg',
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
-
+  // jwt配置
+  config.jwt = {
+    secret: 'b2ce49e4a541068d',
+  };
   // 数据库
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql

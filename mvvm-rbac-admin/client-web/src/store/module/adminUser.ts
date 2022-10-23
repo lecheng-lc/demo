@@ -1,6 +1,7 @@
 import { Login, LoginOut } from '../../api/request'
 import { defineStore } from 'pinia'
 import routerStore from './router'
+import { AuthorizationHeader } from '../../utils/constants'
 export const adminUserStore = defineStore('admin', {
   state: () => {
     return {
@@ -10,6 +11,11 @@ export const adminUserStore = defineStore('admin', {
   actions: {
     SET_ADMINUSER(params: any) {
       this.adminUser = params
+      if(params){
+        window.localStorage.setItem(AuthorizationHeader, params.token)
+      } else{
+        window.localStorage.setItem(AuthorizationHeader, '')
+      }
       window.sessionStorage.setItem('adminUser', JSON.stringify(this.adminUser))
     },
     login({ username, password }: { username: string, password: string }) {

@@ -19,16 +19,19 @@ class LoginService extends Service {
       }
       if (body.password === adminUser[0].password) {
         ctx.status = 200;
+        const token = await ctx.service.jwt.createToken(adminUser[0].id)
         return {
           ok: true,
           msg: '账号密码正确',
           data: {
+            token: token,
             id: adminUser[0].id,
             username: adminUser[0].username,
             avatar: adminUser[0].avatar,
           },
         };
       }
+    
       ctx.status = 400;
       return {
         ok: false,

@@ -23,8 +23,10 @@
   },
   "dependencies": {
     "co-mocha": "^1.2.2",
+    "dayjs": "^1.11.5",
     "egg": "^2.6.1",
     "egg-cors": "^2.2.3",
+    "egg-jwt": "^3.1.7",
     "egg-scripts": "^2.6.0",
     "egg-sequelize": "^6.0.0",
     "mocha": "^10.0.0",

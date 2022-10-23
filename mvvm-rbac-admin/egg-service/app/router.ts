@@ -5,12 +5,12 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/', controller.home.index);
+  // const auth = app.middleware.auth;  
   // 登录退出
   router.post('/api/login', controller.admin.login.login);
   router.post('/api/logout', controller.admin.login.logout);
   // 权限
-  router.get('/api/permission/routes', controller.admin.permission.routes);
+  router.get('/api/permission/routes' , controller.admin.permission.routes);
   router.get('/api/permission', controller.admin.permission.findAll);
   router.get(
     '/api/permissionByCreate',
@@ -33,5 +33,5 @@ module.exports = app => {
   router.delete('/api/adminUser/:id', controller.admin.adminUser.destroy);
   router.put('/api/adminUser', controller.admin.adminUser.update);
   // 角色权限
-  router.get('/api/rolePermission', controller.admin.rolePermission.findAll);
+  router.get('/api/rolePermission',  controller.admin.rolePermission.findAll);
 };
