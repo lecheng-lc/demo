@@ -25,7 +25,6 @@ export default class JwtService extends Service {
     const secret = this.app.config.jwt.secret;
     try {
       await this.app.jwt.verify(token, secret);
-      console.log(111111)
     } catch (e:any) { // 如果token验证失败直接抛出异常
       // 通过消息判断token是否过期
       if (e.message === 'jwt expired') {
@@ -38,7 +37,6 @@ export default class JwtService extends Service {
   // 通过token获取用户id
   async getUserIdFromToken (token) {
     try{
-      console.log('88777')
       await this.verifyToken(token);
       // 解析token
       const res:any = await this.app.jwt.decode(token);

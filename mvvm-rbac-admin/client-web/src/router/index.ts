@@ -21,7 +21,6 @@ router.beforeEach((to, from, next) => {
           },
           component: _import('404')
         })
-        console.log(11111111,res)
         res.forEach((item:any) => {
           console.log(item)
           router.addRoute(item) // vue3 不在支持数组形式的添加，该用vue.addroute 单条记录

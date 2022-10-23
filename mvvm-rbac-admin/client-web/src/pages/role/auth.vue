@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import {adminUserStore} from '../../store/module/adminUser'
 import { ref } from 'vue'
-import { rolePermision, apiPermission, roleAuth, apiAuth } from '../../api/request'
+import {  apiPermission, roleAuth, apiAuth } from '../../api/request'
 import { useRoute, useRouter } from 'vue-router'
 const adminUserInstance = adminUserStore()
 const route = useRoute()

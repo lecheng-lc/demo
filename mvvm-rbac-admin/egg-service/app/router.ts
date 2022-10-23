@@ -5,14 +5,14 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  // const auth = app.middleware.auth;  
+  // const auth = app.middleware.auth
   // 登录退出
   router.post('/api/login', controller.admin.login.login);
   router.post('/api/logout', controller.admin.login.logout);
   // 权限
   router.get('/api/permission/routes' , controller.admin.permission.routes);
   router.get('/api/permission', controller.admin.permission.findAll);
-  router.get(
+  router.get( 
     '/api/permissionByCreate',
     controller.admin.permission.findAllByCreate
   );

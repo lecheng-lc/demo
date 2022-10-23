@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive ,computed} from 'vue'
+import { ref ,computed} from 'vue'
 import { useRouter } from 'vue-router'
 import { rolePermision, permissionByCreate } from '../../api/request'
 const router = useRouter()

@@ -8,7 +8,8 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1665642380841_9806';
 
   // add your egg config in here
-  config.middleware = [];
+  config.middleware = ['auth'];
+  config.routerAuth = ['/api/login', '/admin/logout']
 
   // add your special config in here
   const bizConfig = {
