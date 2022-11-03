@@ -20,7 +20,7 @@ module.exports = app => {
         type: DATE,
         get() {
           return moment((this as any).getDataValue('createdAt')).format(
-            'YYYY-MM-DD HH:mm:ss'
+            'YYYY-MM-DD'
           );
         },
       },
@@ -28,7 +28,7 @@ module.exports = app => {
         type: DATE,
         get() {
           return moment((this as any).getDataValue('createdAt')).format(
-            'YYYY-MM-DD HH:mm:ss'
+            'YYYY-MM-DD'
           );
         },
       },

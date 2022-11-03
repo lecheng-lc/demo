@@ -2,8 +2,12 @@
 module.exports = name => { // 此处name为 auth(xxx) 的xxx
   return async function auth(ctx, next) {
     // 获取token
+    const whiteList = ctx.app.config.routerAuth
+    const apiUrl = ctx.request.url
+    if(whiteList.includes(apiUrl)){
+       return await next(); 
+    }
     let token = ctx.request.headers.authorization;
-    console.log('-----', token)
     if(token) {
       token = token.split(' ')[1]
       // 通过token获取用户id

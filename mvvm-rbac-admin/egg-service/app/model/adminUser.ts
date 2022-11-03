@@ -53,7 +53,7 @@ module.exports = app => {
       underscored: false, // 不使用下划线
     }
   );
-  AdminUser.associate = function() {
+  AdminUser.associate = function() { // egg-sequelize 插件在loadDatabase的时候会执行associate()，建立模型之间的关系,创建表的关联关系
     app.model.AdminUser.belongsTo(app.model.Role, { as: 'role' });
   };
   return AdminUser;
