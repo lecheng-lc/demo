@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我是页面A</title>
+</head>
+<style>
+  .advantage{
+    margin-top:100px;
+  }
+</style>
+<body>
+  我是基座应用，iframe的元素不能够撑开<br/>
+  iframe1
+  <iframe id="iframe" src="http://127.0.0.1:8888/another-page.html" frameborder="0"></iframe><br/>
+  iframe2
+  <iframe src="http://127.0.0.1:8888/another-page.html" frameborder="0"></iframe>
+  <p>写一个P标签</p>
+  <button id="btn-layer">iframe内部弹窗，点击</button>
+  <p>触发load的时间：<span id="time"></span> </p>
+  <div class="advantage">
+    <h2>优势</h2>
+    <p>隔离性能好包括，完美的css隔离，完美js隔离</p>
+    <p>非常简单，使用没有任何心智负担。</p>
+    <p>多应用激活，页面上可以摆放多个iframe来组合业务 </p>
+
+    <h2>劣势</h2>
+    <p>页面加载问题: 影响主页面加载，阻塞onload事件，本身加载也很慢，</p>
+    <p>dom 割裂严重，弹窗只能在 iframe 内部展示，无法覆盖全局。布局问题，iframe标签无法自动撑开</p>
+    <p>路由状态丢失，刷新一下，iframe 的 url 状态就丢失了。</p>
+    <p>
+      iframe样式不容易更改，跨域的情况下只能通过postmesssage和window.addEventListenner('message',cb()),子应用需要和基座共享cookie的话，条件还是比较苛刻的，需要主域名一致
+    </p>
+    <p>白屏时间太长，对于SPA 应用应用来说无法接受。</p>
+  </div>
+</body>
+<script>
+  var btn = document.getElementById('btn-layer')
+  var iframe = document.getElementById('iframe');
+  btn.onclick = () => {
+    iframe.contentWindow.postMessage('你个小瘪三，弹窗弹起来', '*')
+  }
+  var startTime = +new Date()
+  window.addEventListener('load', () => {
+    var endTime = +new Date()
+    document.getElementById('time').innerHTML = `${(endTime - startTime) / 1000}`
+  })
+</script>
+
+</html>
