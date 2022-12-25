@@ -1,0 +1,50 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: wanghongkui
+ * @Date: 2021-03-01 15:36:20
+ * @LastEditTime: 2021-03-08 11:31:04
+-->
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="importmap-type" content="systemjs-importmap">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+      <!-- PRELOADS -->
+    <script src="https://unpkg.com/import-map-overrides@1.7.2/dist/import-map-overrides.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
+    </noscript>
+    <script src="https://gcore.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+    <!-- 处理umd模块 -->
+    <script src="https://cdn.bootcss.com/systemjs/6.1.1/extras/amd.js"></script>
+    <div id="app"></div>
+    <script type="systemjs-importmap" crossorigin>
+      {
+        "imports": {
+          "vue": "https://gcore.jsdelivr.net/npm/vue@2.6.11",
+          "vue-router": "https://unpkg.com/vue-router@3.2.0/dist/vue-router.js",
+          "vuex": "https://unpkg.com/vuex@3.4.0",
+          "lodash": "https://gcore.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js",
+          "dayjs": "https://unpkg.com/dayjs@1.8.21/dayjs.min.js",
+          "sample-react-parcel": "http://localhost:9002/index.js",
+          "app-demo1": "http://localhost:8992/js/app.js",
+          "react": "https://unpkg.com/react@16.12.0/umd/react.production.min.js",
+          "react-dom": "https://unpkg.com/react-dom@16.12.0/umd/react-dom.production.min.js",
+          "axios": "https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js",
+          "app-demo3":"http://localhost:9003/js/app.js"
+        }
+      }
+    </script>
+  <import-map-overrides-full show-when-local-storage="overrides-ui"></import-map-overrides-full>
+  </body>
+</html>

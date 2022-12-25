@@ -17,7 +17,6 @@ output.js
 /lib
 /es
 /lib-global
-/test
 # Editor directories and files
 .idea
 .vscode
