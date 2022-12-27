@@ -35,3 +35,7 @@ npm run start
   - 基座应用和子应用样式隔离
   - 子应用与子应用的样式隔离
 - js进行隔离
+- 基座应用与子应用的通信问题
+
+
+<!-- https://bbs.huaweicloud.com/blogs/378395 -->

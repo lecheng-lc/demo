@@ -10,15 +10,15 @@ module.exports = {
   },
   filenameHashing: false,
   css: {
-    loaderOptions: {
-      postcss: {
-        plugins: [
-          prefixer({
-            prefix: "#single-spa-application:app1"
-          })
-        ]
-      }
-    },
+    // loaderOptions: {
+    //   postcss: {
+    //     plugins: [
+    //       prefixer({
+    //         prefix: "#single-spa-application:app1"
+    //       })
+    //     ]
+    //   }
+    // },
   },
   filenameHashing: false,
 }

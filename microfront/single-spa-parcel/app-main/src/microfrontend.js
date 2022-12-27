@@ -5,8 +5,6 @@ import { registerApplication, start,setBootstrapMaxTime } from 'single-spa';
  * 获取子项目app.js文件
  */
 function getApplication(path) {
-  console.log(path)
-  console.log(12)
   return window.System.import(`${path}?time=${new Date().getTime()}`).then((res) => {
     if (res.default) {
       return window.System.import(res.default['app.js']).then((ret) => ret.default);
@@ -39,7 +37,7 @@ setBootstrapMaxTime(10);
 const configProject = [
   {
     name: 'app1',
-    app: window.System.import('app-demo1').then((res) => res.default),
+    app: ()=> window.System.import('app-demo1').then((res) => res.default),
     activeWhen: (location) => location.pathname.startsWith('/app1'),
     customProps: {
       // 对象
@@ -52,7 +50,7 @@ const configProject = [
   },
   {
     name: 'app2',
-    app: getApplication(development ? 'http://localhost:8993/manifest.json' : `${baseUrl}/app2/manifest.json`),
+    app:()=> getApplication(development ? 'http://localhost:8993/manifest.json' : `${baseUrl}/app2/manifest.json`),
     activeWhen: (location) => location.pathname.startsWith('/app2'),
     customProps: {
       // 对象

@@ -7,7 +7,6 @@ module.exports = {
   // 设定好publicPath, 端口最好是一个固定值
   publicPath: process.env.NODE_ENV === 'production' ? '/app-demo2' : 'http://localhost:8993',
   configureWebpack: (config) => {
-    console.log(config)
     config.output.libraryTarget = 'umd'; // 打包格式为umd 配合模块加载工具加载项目
     config.output.library = packageName;
     config.output.jsonpFunction = `webpackJsonp_${packageName}`;
