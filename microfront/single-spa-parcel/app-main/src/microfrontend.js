@@ -37,21 +37,34 @@ setBootstrapMaxTime(10);
 const configProject = [
   {
     name: 'app1',
-    app: ()=> window.System.import('app-demo1').then((res) => res.default),
+    app: ()=> window.System.import('app-demo1').then((res) => {
+      return res.default
+    }),
     activeWhen: (location) => location.pathname.startsWith('/app1'),
     customProps: {
       // 对象
       everything: 'just do it'
     }
-    //   customProps: (name, location) => {
-    //     // 函数
-    //     return {everything: 'just do it'};
-    //   }
+    // customProps: (name, location) => {
+    //  // 函数
+    //  return {everything: 'just do it'};
+    // }
   },
   {
     name: 'app2',
     app:()=> getApplication(development ? 'http://localhost:8993/manifest.json' : `${baseUrl}/app2/manifest.json`),
     activeWhen: (location) => location.pathname.startsWith('/app2'),
+    customProps: {
+      // 对象
+      everything: 'just do it'
+    }
+  },
+  {
+    name: 'app3',
+    app: ()=> window.System.import('app-demo4').then((res) => {
+      return res.default
+    }),
+    activeWhen: (location) => location.pathname.startsWith('/app3'),
     customProps: {
       // 对象
       everything: 'just do it'
