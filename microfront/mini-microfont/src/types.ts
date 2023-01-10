@@ -11,7 +11,7 @@ export interface IInternalAppInfo extends IAppInfo {
   status: AppStatus
   bootstrap?: LifeCycle
   mount? : LifeCycle
-  unmout? : LifeCycle
+  unmount? : LifeCycle
   proxy: any
 }
 
