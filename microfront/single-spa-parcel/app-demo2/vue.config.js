@@ -9,10 +9,10 @@ module.exports = {
   configureWebpack: (config) => {
     config.output.libraryTarget = 'umd'; // 打包格式为umd 配合模块加载工具加载项目
     config.output.library = packageName;
-    config.output.jsonpFunction = `webpackJsonp_${packageName}`;
+    // config.output.jsonpFunction = `webpackJsonp_${packageName}`;
     // 删除chunk-vendors.js文件，公共三方模块打包进app.js文件
     config.optimization.splitChunks.cacheGroups = {};
-    //config.optimization.delete('splitChunks');
+    // config.optimization.delete('splitChunks');
     // 打包时移除这些通用库，配合systemjs从root加载
     config.externals = ['vue', 'vue-router', 'vuex', 'lodash', 'dayjs'];
     config.module.rules.push({ parser: { system: false } })

@@ -6,6 +6,8 @@ module.exports = {
   configureWebpack: (config) => {
     config.module.rules.push({ parser: { system: false } })
     // 打包时移除这些通用库，配合systemjs从root加载s
+    config.output.library = 'yanjie'
+    config.output.libraryTarget = 'umd'
     config.externals = ['vue', 'vue-router', 'vuex', 'lodash', 'dayjs'];
   },
   filenameHashing: false,
