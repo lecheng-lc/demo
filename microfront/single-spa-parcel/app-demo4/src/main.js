@@ -11,8 +11,11 @@ const appOptions = {
   router,
   store
 }
+console.log(123)
+
 // 判断是微前端加载还是独立运行
 if (!window.singleSpaNavigate) {
+  console.log(123)
   new Vue(appOptions).$mount('#app');
 } 
 const vueLifecycles = singleSpaVue({

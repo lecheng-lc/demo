@@ -62,9 +62,24 @@ const configProject = [
   {
     name: 'app3',
     app: ()=> window.System.import('app-demo4').then((res) => {
+      console.log(res)
+      console.log('9999')
       return res.default
     }),
     activeWhen: (location) => location.pathname.startsWith('/app3'),
+    customProps: {
+      // 对象
+      everything: 'just do it'
+    }
+  },
+  {
+    name: 'app4',
+    app: ()=> window.System.import('app-demo5').then((res) => {
+      console.log(res)
+      console.log('8888')
+      return res.default
+    }),
+    activeWhen: (location) => location.pathname.startsWith('/app4'),
     customProps: {
       // 对象
       everything: 'just do it'

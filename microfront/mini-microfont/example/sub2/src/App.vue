@@ -10,8 +10,6 @@ export default {
   components: {
   },
   created(){
-    console.log(window.a)
-    console.error('pppp')
   }
 }
 

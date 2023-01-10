@@ -6,7 +6,6 @@ Vue.config.productionTip = false
 let app
 
 export const bootstrap = () => {
-  console.log(222)
   app = new Vue({
     render: (h) => h(App),
   })

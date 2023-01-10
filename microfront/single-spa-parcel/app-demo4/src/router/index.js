@@ -19,7 +19,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: '/app1',
+  base: '/app3',
   routes
 });
 

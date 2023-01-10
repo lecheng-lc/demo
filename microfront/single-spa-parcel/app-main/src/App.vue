@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/app1">点我去fashion应用</router-link> |
-      <router-link to="/app2">点我去giao应用</router-link>
+      <router-link to="/app1">app1应用</router-link> | 
+      <router-link to="/app2">app2应用</router-link> | 
+      <router-link to="/app3">app3应用</router-link> | 
+      <router-link to="/app4">app4应用</router-link> 
     </div>
     <router-view />
   </div>

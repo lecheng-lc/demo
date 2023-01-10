@@ -1,37 +1,21 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your APP1 " />
-    sadas
-    <div id="parcel"></div>
+    <HelloWorld msg="Welcome to Your APP3 " />
   </div>
 </template>
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue'
 import { mountParcel } from '../main'
-// import { parcelConfig } from '../../../app-main/parcels'
 export default {
   name: 'Home',
   components: {
     HelloWorld
   },
   mounted() {
-    this.loadParcel()
   },
   methods: {
-    loadParcel() {
-      var domElement = document.getElementById('parcel')
-      const appDemo = () => System.import("app-demo3")
-      appDemo().then(res => {
-        Promise.resolve(res)
-        // 由于systemjs版本的问题，得用res.default了
-        mountParcel(res.default, { domElement })
-      }).then(() => {
-      })
-      // @abandon，新版本的systemjs不再支持这样引入
-      // mountParcel(System.import("sample-react-parcel"), { domElement })
-    }
   }
 }
 </script>

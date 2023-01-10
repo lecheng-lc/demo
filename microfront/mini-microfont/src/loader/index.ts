@@ -8,7 +8,6 @@ export const loadHTML = async (app: IInternalAppInfo) => {
   const { template, getExternalScripts, getExternalStyleSheets } =
     await importEntry(entry) // html 、 js 、 css
   const dom = document.querySelector(container) // 查询
-
   if (!dom) {
     throw new Error('容器不存在')
   }
@@ -16,8 +15,7 @@ export const loadHTML = async (app: IInternalAppInfo) => {
   await getExternalStyleSheets()
   const jsCode = await getExternalScripts()
   jsCode.forEach((script) => {
-    const lifeCycle = runJS(script, app) // 
-  
+    const lifeCycle = runJS(script, app) //
     if (lifeCycle) { // 在这里塞的，每一个应用都有lifeCicle的值
       app.bootstrap = lifeCycle.bootstrap
       app.mount = lifeCycle.mount

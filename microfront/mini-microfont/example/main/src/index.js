@@ -23,6 +23,12 @@ const appList = [
     container: '#micro-container',
     entry: 'http://localhost:7992',
   },
+  {
+    name: 'vue3',
+    activeRule: '/vue3',
+    container: '#micro-container',
+    entry: 'http://localhost:7993',
+  },
 ]
 
 registerMicroApps(appList)
