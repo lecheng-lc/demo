@@ -8,7 +8,6 @@ module.exports = {
     // config.output.libraryTarget = 'umd'
     config.externals = ['vue', 'vue-router', 'vuex', 'lodash', 'dayjs'];
   },
-  filenameHashing: false,
   css: {
   },
 }

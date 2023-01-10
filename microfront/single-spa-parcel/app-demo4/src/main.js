@@ -11,7 +11,6 @@ const appOptions = {
   router,
   store
 }
-console.log(123)
 
 // 判断是微前端加载还是独立运行
 if (!window.singleSpaNavigate) {
@@ -22,9 +21,7 @@ const vueLifecycles = singleSpaVue({
   Vue,
   appOptions
 });
-export var mountParcel;
-export const bootstrap = [(props)=>{
-  mountParcel = props.mountParcel
+export const bootstrap = [()=>{
   return Promise.resolve()
 }] 
 export const mount = vueLifecycles.mount

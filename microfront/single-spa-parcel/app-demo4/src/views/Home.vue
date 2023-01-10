@@ -7,7 +7,6 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue'
-import { mountParcel } from '../main'
 export default {
   name: 'Home',
   components: {
