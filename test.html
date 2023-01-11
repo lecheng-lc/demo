@@ -1,0 +1,56 @@
+<html lang="" data-redeviation-bs-uid="61153">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico">
+  <title>app-demo5</title>
+
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but app-demo5 doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app">
+  </div>
+  <script>
+    // 远程加载子应用
+    function createScript(url) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.onload = resolve
+        script.onerror = reject
+        const firstScript = document.getElementsByTagName('script')[0]
+        // console.error(url)
+        // console.error(9988)
+        firstScript.parentNode.insertBefore(script, firstScript)
+      })
+    }
+
+    // 记载函数，返回一个 promise
+    function loadApp(url, globalVar) {
+      // 支持远程加载子应用
+      return new Promise(async (resolve) => {
+        await createScript(url + '/js/chunk-vendors.js')
+        await createScript(url + '/js/app.js')
+        // await createScript('../test.js')
+        // 这里的return很重要，需要从这个全局对象中拿到子应用暴露出来的生命周期函数
+        // console.log(window[globalVar])
+        // console.log(9999)
+        // console.log(globalVar)
+        console.log(window[globalVar])
+        resolve(window[globalVar])
+        return window[globalVar]
+      })
+    }
+    loadApp('http://172.31.11.4:8995', 'app4')
+  </script>
+  <!-- <script src="http://172.31.11.4:8995/js/app.js"></script>
+  <script src="http://172.31.11.4:8995/js/chunk-vendors.js"></script> -->
+</body>
+
+</html>

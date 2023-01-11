@@ -11,6 +11,29 @@ function getApplication(path) {
     }
   });
 }
+// 远程加载子应用
+function createScript(url) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = url
+    script.onload = resolve
+    script.onerror = reject
+    const firstScript = document.getElementsByTagName('script')[0]
+    firstScript.parentNode.insertBefore(script, firstScript)
+  })
+}
+
+// 记载函数，返回一个 promise
+function loadApp(url, globalVar) {
+  // 支持远程加载子应用
+  return new Promise(async (resolve)=>{
+      await createScript(url + '/js/chunk-vendors.js')
+      await createScript(url + '/js/app.js')
+      resolve(window[globalVar])
+      return window[globalVar]
+  }) 
+}
+
 /**
  * name: 第一个参数表示应用名称，name必须是string类型
  *
@@ -31,7 +54,6 @@ function getApplication(path) {
  * 函数 两个参数 应用的名称和window.location
  */
 const development = process.env.NODE_ENV === 'development';
-/// web 部署根域名
 const baseUrl = process.env.VUE_APP_WEB_URL;
 setBootstrapMaxTime(10);
 const configProject = [
@@ -41,21 +63,15 @@ const configProject = [
       return res.default
     }),
     activeWhen: (location) => location.pathname.startsWith('/app1'),
-    customProps: {
-      // 对象
-      everything: 'just do it'
+    customProps: (name, location) => {
+     return {everything: 'just do it'};
     }
-    // customProps: (name, location) => {
-    //  // 函数
-    //  return {everything: 'just do it'};
-    // }
   },
   {
     name: 'app2',
     app:()=> getApplication(development ? 'http://localhost:8993/manifest.json' : `${baseUrl}/app2/manifest.json`),
     activeWhen: (location) => location.pathname.startsWith('/app2'),
     customProps: {
-      // 对象
       everything: 'just do it'
     }
   },
@@ -68,17 +84,18 @@ const configProject = [
     }),
     activeWhen: (location) => location.pathname.startsWith('/app3'),
     customProps: {
-      // 对象
       everything: 'just do it'
     }
   },
   {
     name: 'app4',
-    app: ()=> window.System.import('app-demo5').then((res) => {
-      console.log(res)
-      console.log('8888')
-      return res.default
-    }),
+    // app: ()=> window.System.import('app-demo5').then((res) => {
+    //   console.log(res)
+    //   console.log('8888')
+    //   return res.default
+    // }), // 会报错
+    app: loadApp('http://172.31.11.4:8995', 'app4'),
+    // app:()=> getApplication(development ? 'http://localhost:8995/manifest.json' : `${baseUrl}/app4/manifest.json`),
     activeWhen: (location) => location.pathname.startsWith('/app4'),
     customProps: {
       // 对象
