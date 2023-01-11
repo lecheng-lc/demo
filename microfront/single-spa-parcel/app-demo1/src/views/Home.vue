@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your APP1 " />
-    sadas
+    <button @click="loadCanvas">加载canvas</button>
     <div id="parcel"></div>
   </div>
 </template>
@@ -20,6 +20,11 @@ export default {
     this.loadParcel()
   },
   methods: {
+    loadCanvas(){
+      import('html2canvas').then(res=>{
+        console.log('异步加载资源')
+      })
+    },
     loadParcel() {
       var domElement = document.getElementById('parcel')
       const appDemo = () => System.import("app-demo3")
