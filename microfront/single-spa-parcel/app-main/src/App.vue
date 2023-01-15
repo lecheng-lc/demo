@@ -12,6 +12,11 @@
 <script>
 // import * as singleSpa from 'single-spa';
 export default {
+  mounted() {
+    window.event.on('test', (res)=>{
+      console.log(`${res}`)
+    })
+  },
   updated()  {
     // const mountedAppNames = singleSpa.getMountedApps();
     // console.log(mountedAppNames);

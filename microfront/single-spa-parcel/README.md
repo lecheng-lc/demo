@@ -37,10 +37,11 @@ npm run start
   - 1.改造项目的webpack配置
   - 2.改造入口文件
   - 3.改造子项目
-- CSS隔离得手动实现
-  - 基座应用和子应用样式隔离
+- CSS隔离得手动实现 使用postcss-selector-namespace插件进行子应用间的样式隔离
+  - 基座应用和子应用样式隔离 
   - 子应用与子应用的样式隔离
-- js进行隔离
+- js进行隔离 
 - 基座应用与子应用的通信问题
-
+  - 使用eventbus即可
+  - 使用基座应用的vuex即可
 <!-- https://bbs.huaweicloud.com/blogs/378395 -->

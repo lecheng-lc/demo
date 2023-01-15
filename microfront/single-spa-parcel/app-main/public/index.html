@@ -1,27 +1,67 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="importmap-type" content="systemjs-importmap">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
-      <!-- PRELOADS -->
-    <script src="https://lecheng-static.oss-cn-beijing.aliyuncs.com/hhh/22/import-map-overrides.js"></script>
-  </head>
-  <body>
-    <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
-    </noscript>
-    <script src="https://lecheng-static.oss-cn-beijing.aliyuncs.com/hhh/22/sysytem.js"></script>
-    <!-- 处理umd模块 -->
-    <script src="https://lecheng-static.oss-cn-beijing.aliyuncs.com/hhh/22/amd.js"></script>
-    <div id="app"></div>
-    <script type="systemjs-importmap" crossorigin>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="importmap-type" content="systemjs-importmap">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <!-- PRELOADS -->
+  <script src="https://lecheng-static.oss-cn-beijing.aliyuncs.com/hhh/22/import-map-overrides.js"></script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to
+        continue.</strong>
+  </noscript>
+  <script>
+    class EventEmitter {
+      constructor() {
+        this.events = {};
+      }
+      // 实现订阅
+      on(type, callBack) {
+        if (!this.events[type]) {
+          console.log('方法注册')
+          this.events[type] = [callBack];
+        } else {
+          this.events[type].push(callBack);
+        }
+      }
+      // 删除订阅
+      off(type, callBack) {
+        if (!this.events[type]) return;
+        this.events[type] = this.events[type].filter((item) => {
+          return item !== callBack;
+        });
+      }
+      // 只执行一次订阅事件
+      once(type, callBack) {
+        function fn() {
+          callBack();
+          this.off(type, fn);
+        }
+        this.on(type, fn);
+      }
+      // 触发事件
+      emit(type, ...rest) {
+        this.events[type] &&
+          this.events[type].forEach((fn) => fn.apply(this, rest));
+      }
+    }
+    window.event = new EventEmitter()
+  </script>
+  <script src="https://lecheng-static.oss-cn-beijing.aliyuncs.com/hhh/22/sysytem.js"></script>
+  <!-- 处理umd模块 -->
+  <script src="https://lecheng-static.oss-cn-beijing.aliyuncs.com/hhh/22/amd.js"></script>
+  <div id="app"></div>
+  <script type="systemjs-importmap" crossorigin>
       {
         "imports": {
           "vue": "https://lecheng-static.oss-cn-beijing.aliyuncs.com/hhh/22/vue.js",
@@ -39,7 +79,8 @@
         }
       }
     </script>
-    <!-- @todo "app-demo5": "http://localhost:8995/js/app.js" -->
+  <!-- @todo "app-demo5": "http://localhost:8995/js/app.js" -->
   <import-map-overrides-full show-when-local-storage="overrides-ui"></import-map-overrides-full>
-  </body>
+</body>
+
 </html>

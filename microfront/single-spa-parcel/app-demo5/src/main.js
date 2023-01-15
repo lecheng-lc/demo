@@ -4,7 +4,6 @@ import router from './router';
 import store from './store';
 import singleSpaVue from 'single-spa-vue';
 Vue.config.productionTip = false;
-
 const appOptions = {
   render: (h) => h(App),
   router,

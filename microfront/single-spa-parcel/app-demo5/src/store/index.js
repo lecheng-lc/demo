@@ -1,17 +1,41 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
+  namespaced: true,
   state: {
-  },
-  getters: {
+    appDemo1: "app-demo1",
+    count: 0,
   },
   mutations: {
+    increment(state) {
+      state.count++;
+    },
   },
   actions: {
+    increment(context) {
+      context.commit("increment");
+    },
   },
   modules: {
-  }
-})
+    test: {
+      namespaced: true,
+      state: {
+        test: "test1",
+        count: 0,
+      },
+      mutations: {
+        increment2(state) {
+          state.count++;
+        },
+      },
+      actions: {
+        increment2(context) {
+          context.commit("increment2");
+        },
+      },
+    },
+  },
+});

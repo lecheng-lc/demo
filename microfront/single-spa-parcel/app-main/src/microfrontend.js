@@ -1,5 +1,4 @@
 import { registerApplication, start,setBootstrapMaxTime } from 'single-spa';
-///// 文件的相关路径需要替换成自己项目实际路径
 /**
  *
  * 获取子项目app.js文件
@@ -67,6 +66,7 @@ const configProject = [
      return {everything: 'just do it'};
     }
   },
+  // 通过manifest去加载资源
   {
     name: 'app2',
     app:()=> getApplication(development ? 'http://localhost:8993/manifest.json' : `${baseUrl}/app2/manifest.json`),
@@ -87,15 +87,13 @@ const configProject = [
       everything: 'just do it'
     }
   },
+  // 通过loadApp函数进行资源加载
   {
     name: 'app4',
     // app: ()=> window.System.import('app-demo5').then((res) => {
-    //   console.log(res)
-    //   console.log('8888')
     //   return res.default
     // }), // 会报错
-    app: loadApp('http://172.31.11.4:8995', 'app4'),
-    // app:()=> getApplication(development ? 'http://localhost:8995/manifest.json' : `${baseUrl}/app4/manifest.json`),
+    app: loadApp('http://localhost:8995', 'app4'),
     activeWhen: (location) => location.pathname.startsWith('/app4'),
     customProps: {
       // 对象

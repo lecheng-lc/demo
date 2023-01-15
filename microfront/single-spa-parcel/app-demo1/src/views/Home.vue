@@ -21,6 +21,7 @@ export default {
   },
   methods: {
     loadCanvas(){
+      window.event.emit('test', '测试参数')
       import('html2canvas').then(res=>{
         console.log('异步加载资源')
       })

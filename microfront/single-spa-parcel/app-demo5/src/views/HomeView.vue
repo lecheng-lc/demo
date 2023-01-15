@@ -1,18 +1,22 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button class="post" @click="testPost">点我尝试进行通信</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+// import vuex2 from '../store/index2'
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+  },
+  mounted(){
+  },
+  methods:{
+    testPost() {
+      this.$eventEmitter && this.$eventEmitter.emit('test','测试参数a', '测试参数b')
+    }
   }
 }
 </script>

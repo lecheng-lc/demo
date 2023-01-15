@@ -1,28 +1,27 @@
 // 其余不同的文件 执行
-const prefixer = require('postcss-prefix-selector');
-const { name } = require('./package.json');
+const prefixer = require("postcss-prefix-selector");
+const { name } = require("./package.json");
+const namespace = require("postcss-selector-namespace");
 module.exports = {
-  lintOnSave:false,
+  lintOnSave: false,
   configureWebpack: (config) => {
-    config.module.rules.push({ parser: { system: false } })
+    config.module.rules.push({ parser: { system: false } });
     // 打包时移除这些通用库，配合systemjs从root加载s
     // config.output.library = ' vue'
-    config.externals = ['vue', 'vue-router', 'vuex', 'lodash', 'dayjs'];
+    config.externals = ["vue", "vue-router", "vuex", "lodash", "dayjs"];
   },
   filenameHashing: false,
   css: {
-    // loaderOptions: {
-    //   postcss: {
-    //     plugins: [
-    //       prefixer({
-    //         prefix: "#single-spa-application:app1"
-    //       })
-    //     ]
-    //   }
-    // },
+    loaderOptions: {
+      postcss: {
+        plugins:[
+          require("postcss-selector-namespace")({namespace:'.app-demo1'})
+        ]
+      },
+    },
   },
   filenameHashing: false,
-}
+};
 
 /**
  *
@@ -74,4 +73,4 @@ module.exports = {
 
 //       webpackConfig.externals(["single-spa"]);
 //     });
-//   };
+//   }
