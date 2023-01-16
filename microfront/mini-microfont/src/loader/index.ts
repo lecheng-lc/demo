@@ -31,6 +31,9 @@ const runJS = (value: string, app: IInternalAppInfo) => {
     app.proxy = new ProxySandbox() // 进行JS拦截
     // @ts-ignore
     window.__CURRENT_PROXY__ = app.proxy.proxy
+    console.log(app.proxy.proxy)
+    console.error(123456)
+    console.log(value)
   }
   // @ts-ignore
   app.proxy.active()

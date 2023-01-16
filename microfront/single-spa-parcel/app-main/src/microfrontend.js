@@ -6,7 +6,7 @@ import { registerApplication, start,setBootstrapMaxTime } from 'single-spa';
 function getApplication(path) {
   return window.System.import(`${path}?time=${new Date().getTime()}`).then((res) => {
     if (res.default) {
-      return window.System.import(res.default['app.js']).then((ret) => ret.default);
+      return window.System.import(res.default['app.js']).then((res) => res.default);
     }
   });
 }
@@ -79,7 +79,6 @@ const configProject = [
     name: 'app3',
     app: ()=> window.System.import('app-demo4').then((res) => {
       console.log(res)
-      console.log('9999')
       return res.default
     }),
     activeWhen: (location) => location.pathname.startsWith('/app3'),

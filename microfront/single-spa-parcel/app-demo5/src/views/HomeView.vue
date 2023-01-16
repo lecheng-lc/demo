@@ -12,6 +12,7 @@ export default {
   components: {
   },
   mounted(){
+    window.bbb = 22
   },
   methods:{
     testPost() {

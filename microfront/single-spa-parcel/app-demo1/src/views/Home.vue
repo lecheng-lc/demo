@@ -17,6 +17,7 @@ export default {
     HelloWorld
   },
   mounted() {
+    window.aaa = 222
     this.loadParcel()
   },
   methods: {
