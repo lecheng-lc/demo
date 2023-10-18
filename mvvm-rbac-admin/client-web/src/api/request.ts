@@ -50,7 +50,6 @@ export function apiRole(data?:any){
   })
 }
 export function putApiRole(data?:any){
-  console.log(data,']]]][[[[')
   return http({
     method:'put',
     url: '/api/role',

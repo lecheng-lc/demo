@@ -26,7 +26,6 @@ export default defineStore('router',{
     addRouter () {
       const adminStore = adminUserStore()
       let userId =  adminStore.adminUser.id
-      console.log(userId,'------')
       return new Promise((resolve, reject) => {
         rolePermision( {
           userId
