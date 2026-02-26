@@ -1,0 +1,23 @@
+{
+  "version": 3,
+  "file": "my-lib.js",
+  "mappings": "CAAA,SAA2CA,EAAMC,GAC1B,iBAAZC,SAA0C,iBAAXC,OACxCA,OAAOD,QAAUD,IACQ,mBAAXG,QAAyBA,OAAOC,IAC9CD,OAAO,GAAIH,GACe,iBAAZC,QACdA,QAAe,MAAID,IAEnBD,EAAY,MAAIC,GACjB,CATD,CASGK,KAAM,I,0BCRTC,QAAQC,IAAI,gBCAVD,QAAQC,IAAIC,K",
+  "sources": [
+    "webpack://MyLib/webpack/universalModuleDefinition",
+    "webpack://MyLib/./src/index.js",
+    "webpack://MyLib/./src/c.js"
+  ],
+  "names": [
+    "root",
+    "factory",
+    "exports",
+    "module",
+    "define",
+    "amd",
+    "this",
+    "console",
+    "log",
+    "ddd"
+  ],
+  "sourceRoot": ""
+}

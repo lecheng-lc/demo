@@ -15,7 +15,7 @@ const jsonData = {
         price: "99.99"
     },
     user_id: "u_abc123xyz",
-    session_id: "sess_098765"
+    session_id: "a"
 };
 
 console.log('========== 数据对比测试 ==========\n');
