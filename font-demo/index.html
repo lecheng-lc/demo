@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Font Block Test</title>
+
+<style>
+/* ❌ 情况一：会阻塞文本显示 */
+@font-face {
+  font-family: "BlockFont";
+  src: url("./test-font.ttf") format("truetype");
+  font-display: block;
+}
+
+/* ✅ 情况二：不会阻塞 */
+@font-face {
+  font-family: "SwapFont";
+  src: url("./test-font.ttf") format("truetype");
+  font-display: swap;
+}
+
+.block {
+  font-family: "BlockFont";
+  font-size: 40px;
+  color: red;
+}
+
+.swap {
+  font-family: "SwapFont";
+  font-size: 40px;
+  color: green;
+}
+</style>
+</head>
+
+<body>
+  <h2>测试字体是否阻塞文本展示</h2>
+
+  <div class="block">
+    这段文字使用 font-display: block
+  </div>
+
+  <br />
+
+  <div class="swap">
+    这段文字使用 font-display: swap
+  </div>
+
+</body>
+</html>
