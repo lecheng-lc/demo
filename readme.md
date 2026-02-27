@@ -5,3 +5,5 @@
 - monoRepo-demo 搭建monorepo仓库
 - mvvm-rbac-admin 搭建rbac的后台权健后台模板
 - react-hooks-admin 工作中react后台模板抽离
+- font-demo 字体加载 demo
+- sourcemap-demo 实践 sourcemap demo
