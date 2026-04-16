@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpack AMD Injection Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; }
+    .card { background: #f4f4f5; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; }
+    code { background: #e4e4e7; padding: 0.2rem 0.4rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Webpack 模拟 AMD 注入验证</h1>
+  <div class="card">
+    <h3>说明</h3>
+    <p>这个页面加载了 <code>dist/main.js</code>，其中包含了一段模拟 lodash UMD 环境嗅探的代码。</p>
+    <p>请按 <kbd>F12</kbd> 打开<strong>浏览器控制台 (Console)</strong> 查看输出日志。</p>
+  </div>
+  
+  <div class="card">
+    <h3>现象预期</h3>
+    <ol>
+      <li>你会看到代码走进了 AMD 分支，而不是 CommonJS 分支。</li>
+      <li>你可以在控制台直接输入 <code>window._</code>，会发现它不再是 <code>undefined</code>，而是被污染成了一个对象 <code>{version: "fake-1.0.0"}</code>。</li>
+    </ol>
+  </div>
+
+  <!-- 引入 Webpack 打包产物 -->
+  <script src="./main.js"></script>
+  
+  <script>
+    // 在页面中也打印一下结果，方便直观查看
+    const resultDiv = document.createElement('div');
+    resultDiv.className = 'card';
+    resultDiv.style.background = typeof window._ !== 'undefined' ? '#fee2e2' : '#dcfce7';
+    resultDiv.innerHTML = `
+      <h3>运行时检测结果：</h3>
+      <p><strong>window._ 的类型:</strong> <code>${typeof window._}</code></p>
+      <p><strong>window._ 的值:</strong> <code>${JSON.stringify(window._)}</code></p>
+      <p style="color: ${typeof window._ !== 'undefined' ? '#dc2626' : '#16a34a'}; font-weight: bold;">
+        ${typeof window._ !== 'undefined' ? ' 全局变量 _ 被污染了！' : '✅ 全局变量 _ 是干净的。'}
+      </p>
+    `;
+    document.body.appendChild(resultDiv);
+  </script>
+</body>
+</html>
