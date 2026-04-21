@@ -1,0 +1,13 @@
+// {
+//     "presets": ["@vue/cli-plugin-babel/preset"],
+//   "plugins": [
+//     [
+//       "component",
+//       {
+//         "libraryName": "lazy-ui",
+//         "libDir": "packages",
+//         "style": false
+//       }
+//     ]
+//   ]
+// }

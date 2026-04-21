@@ -1,0 +1,24 @@
+// tracking.proto
+syntax = "proto3";
+
+package tracking;
+
+// 定义一个埋点事件
+message TrackingEvent {
+  string event_id = 1;      // 事件ID，字段编号为1
+  int64 timestamp = 2;      // 时间戳，字段编号为2
+
+  // 动态属性映射，相当于 JSON 中的 object
+  map<string, string> properties = 3;
+
+  string user_id = 4;       // 用户ID，字段编号为4
+  string session_id = 5;    // 会话ID，字段编号为5，可为空
+
+  // 可以继续添加其他字段...
+  // int32 some_count = 6;
+}
+
+// 一个日志组，可以包含多个事件（对应阿里云 SLS 的 LogGroup）
+message TrackingEventGroup {
+  repeated TrackingEvent events = 1;
+}

@@ -1,0 +1,1 @@
+!function(e,o){"object"==typeof exports&&"object"==typeof module?module.exports=o():"function"==typeof define&&define.amd?define([],o):"object"==typeof exports?exports.MyLib=o():e.MyLib=o()}(this,()=>(()=>{"use strict";return console.log("this is test"),console.log(ddd),{}})());

@@ -1,0 +1,14 @@
+{
+  "name": "font-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "font-spider": "^1.3.5",
+    "fontmin": "^1.1.1",
+    "subset-font": "^2.4.0"
+  },
+  "scripts": {
+    "extract": "font-spider  font-spider/*.html"
+  }
+}
